@@ -1,5 +1,5 @@
-# DogeEX_v2-Toolkit
- UI Toolkit of DogeEx v2
+# seleniumSwap-Toolkit
+ UI Toolkit of seleniumSwap v2
 
 This repository is a monorepo manage with [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) and [Lerna](https://lerna.js.org/). 
 
@@ -12,7 +12,7 @@ This repository is a monorepo manage with [yarn workspaces](https://classic.yarn
 
 ## How to use
 
-- cd DogeEx-v2-Toolkit
+- cd seleniumswap-v2-Toolkit
 - yarn
 - copy directory /packages/pancake-uikit/dist 
-- add above directory to main project (DogeEx-v2 NOT Toolkit) folder at /node_modules/@pancakeswap (you will need to overwrite existing dist directory)
+- add above directory to main project (seleniumswap-v2 NOT Toolkit) folder at /node_modules/@pancakeswap (you will need to overwrite existing dist directory)

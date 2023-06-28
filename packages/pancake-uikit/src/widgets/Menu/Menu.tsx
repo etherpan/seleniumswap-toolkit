@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styled, {DefaultTheme} from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import { useLocation } from "react-router-dom";
 import throttle from "lodash/throttle";
 import Overlay from "../../components/Overlay/Overlay";
@@ -8,7 +8,13 @@ import { useMatchBreakpoints } from "../../hooks";
 import Logo from "./components/Logo";
 import Panel from "./components/Panel";
 import { NavProps } from "./types";
-import { MENU_HEIGHT, SUBNAV_LINK_HEIGHT, MENU_ENTRY_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
+import {
+  MENU_HEIGHT,
+  SUBNAV_LINK_HEIGHT,
+  MENU_ENTRY_HEIGHT,
+  SIDEBAR_WIDTH_REDUCED,
+  SIDEBAR_WIDTH_FULL,
+} from "./config";
 import { LinkLabel, LinkStatus, MenuEntry } from "./components/MenuEntry";
 import MenuLink from "./components/MenuLink";
 import { SvgProps } from "../../components/Svg";
@@ -29,7 +35,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const StyledNav = styled.nav<{ showMenu: boolean, isHome: boolean }>`
+const StyledNav = styled.nav<{ showMenu: boolean; isHome: boolean }>`
   position: fixed;
   top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
   // top: 0px;
@@ -42,7 +48,7 @@ const StyledNav = styled.nav<{ showMenu: boolean, isHome: boolean }>`
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${({ isHome, theme }) => isHome ? 'transparent' : theme.nav.background};
+  background-color: ${({ isHome, theme }) => (isHome ? "transparent" : theme.nav.background)};
   z-index: 20;
   transform: translate3d(0, 0, 0);
 `;
@@ -52,7 +58,7 @@ const BodyWrapper = styled.div`
   display: flex;
 `;
 
-const Inner = styled.div<{ isPushed: boolean; showMenu: boolean, isHome: boolean }>`
+const Inner = styled.div<{ isPushed: boolean; showMenu: boolean; isHome: boolean }>`
   flex-grow: 1;
   margin-top: ${({ isHome, showMenu }) => (isHome ? 0 : showMenu ? `${MENU_HEIGHT}px` : 0)};
   transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -122,7 +128,7 @@ const StyledNavLink = styled.div<Props>`
   // box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
 
   &:hover {
-    color: ${({ theme }) => (theme.colors.textActive)};
+    color: ${({ theme }) => theme.colors.textActive};
   }
 `;
 
@@ -145,15 +151,15 @@ const Menu: React.FC<NavProps> = ({
   links,
   children,
 }) => {
-  // const { isMobile, isTablet } = useMatchBreakpoints();
-  // const isSmallerScreen = isMobile || isTablet;
+  const { isTablet } = useMatchBreakpoints();
+  const isSmallerScreen = isTablet;
   const { isXl } = useMatchBreakpoints();
   const isMobile = isXl === false;
   const [isPushed, setIsPushed] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -201,17 +207,15 @@ const Menu: React.FC<NavProps> = ({
         />
         <SubNavContainer>
           <StyledLinkContainer>
-            {
-              links.map(entry => {
-                return (
-                  <StyledNavLink key={entry.href} isActive={entry.href === activeItem || entry.href === activeSubItem}>
-                    <MenuLink href={entry.href}>
-                      <StyledNavLinkLabel>{entry.label}</StyledNavLinkLabel>
-                    </MenuLink>
-                  </StyledNavLink>
-                )
-              })
-            }
+            {links.map(entry => {
+              return (
+                <StyledNavLink key={entry.href} isActive={entry.href === activeItem || entry.href === activeSubItem}>
+                  <MenuLink href={entry.href}>
+                    <StyledNavLinkLabel>{entry.label}</StyledNavLinkLabel>
+                  </MenuLink>
+                </StyledNavLink>
+              )
+            })}
           </StyledLinkContainer>
           <ConnectContainer>
             <Flex>

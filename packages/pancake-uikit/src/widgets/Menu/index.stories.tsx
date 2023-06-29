@@ -35,14 +35,7 @@ const UserMenuComponent: React.FC<{ variant?: Variant; text?: string; account?: 
   text,
   account = "0x8b017905DC96B38f817473dc885F84D4C76bC113",
 }) => (
-  <UserMenu
-    variant={variant}
-    text={text}
-    account={account}
-    onUserMenuModal={function (): void {
-      throw new Error("Function not implemented.");
-    }}
-  >
+  <UserMenu variant={variant} text={text} account={account}>
     <UserMenuItem type="button" onClick={noop}>
       Wallet
     </UserMenuItem>
@@ -141,7 +134,7 @@ export const Connected: React.FC = () => {
   const props = useProps();
   return (
     <BrowserRouter>
-      <Menu activeItem={""} activeSubItem={""} {...props}>
+      <Menu {...props}>
         <div>
           <Heading as="h1" mb="8px">
             Page body
@@ -168,16 +161,7 @@ export const Connected: React.FC = () => {
 export const NotConnected: React.FC = () => {
   return (
     <BrowserRouter>
-      <Menu
-        isDark={false}
-        toggleTheme={noop}
-        langs={langs}
-        setLang={noop}
-        currentLang="EN"
-        links={links}
-        activeItem={""}
-        activeSubItem={""}
-      >
+      <Menu isDark={false} toggleTheme={noop} langs={langs} setLang={noop} currentLang="EN" links={links}>
         <div>
           <h1>Page body</h1>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -198,16 +182,7 @@ export const NotConnected: React.FC = () => {
 export const WithoutConnectButton: React.FC = () => {
   return (
     <BrowserRouter>
-      <Menu
-        isDark={false}
-        toggleTheme={noop}
-        langs={langs}
-        setLang={noop}
-        currentLang="EN"
-        links={links}
-        activeItem={""}
-        activeSubItem={""}
-      >
+      <Menu isDark={false} toggleTheme={noop} langs={langs} setLang={noop} currentLang="EN" links={links}>
         <div>
           <h1>No connect button on top</h1>
           This variant is needed for info site
@@ -236,10 +211,8 @@ export const WithSubmenuSelected: React.FC = () => {
         langs={langs}
         setLang={noop}
         currentLang="EN"
-        treasurePriceUsd={0.23158668932877668}
+        cakePriceUsd={0.23158668932877668}
         links={links}
-        activeItem={""}
-        activeSubItem={""}
       >
         <div>
           <Heading as="h1" mb="8px">

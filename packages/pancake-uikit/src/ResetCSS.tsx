@@ -52,7 +52,7 @@ const ResetCSS = createGlobalStyle`
     border-spacing: 0;
   }
   a {
-    color: #000;
+    color: inherit;
     text-decoration: none;
   }
   [role="button"] {
